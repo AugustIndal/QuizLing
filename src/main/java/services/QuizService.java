@@ -35,6 +35,16 @@ public class QuizService {
         quizzes.put(quiz.getQid(), quiz);
     }
 
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateKunde(Quiz quiz){
+        if(quizzes.get(quiz.getQid()) != null){
+            quizzes.put(quiz.getQid(),quiz);
+        }else{
+            throw new NotFoundException("NOT FOUND");
+        }
+    }
+
     @DELETE
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)

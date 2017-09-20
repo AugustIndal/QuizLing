@@ -36,6 +36,16 @@ public class QuestionService {
         questions.put(question.getQuestionId(), question);
     }
 
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateKunde(Question question){
+        if(questions.get(question.getQuestionId()) != null){
+            questions.put(question.getQuestionId(),question);
+        }else{
+            throw new NotFoundException("NOT FOUND");
+        }
+    }
+
     @DELETE
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
