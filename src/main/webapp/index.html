@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>rest-template</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-3.2.1.min.js"></script>
+        <script language="javascript">
+            $(document).ready(function() {
+                $(document).ready(function () {
+                    jso
+                    $("#create").click(function () {
+                        $.ajax({
+                            url: 'rest/questions',
+                            type: 'POST',
+                            data: JSON.stringify({
+                                questionId: $("#questionId").val(),
+                                question: $("#questionName").val(),
+                                sec: $("#questionSec").val(),
+                                url: $("#questionURL").val()
+                            }),
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (result) {
+                            }
+                        });
+                    });
+
+                    $.get("rest/thepath", function (data) {
+                        $("#myid").html(data);
+                    });
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <input id="questionId" type="text" value="questionId">
+        <input id="questionName" type="text" value="questionName">
+        <input id="questionSec" type="text" value="questionSec">
+        <input id="questionURL" type="text" value="questionURL">
+
+    </body>
+</html>
+

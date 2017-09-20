@@ -1,0 +1,17 @@
+{
+    "qid": 1,
+    "name": "The Best Quiz2",
+    "questions": [
+        {
+            "questionId": 1,
+            "question": "Who is first question",
+          	"opt": ["test1","test2","test3"],
+          	"svarInd": 0
+        }, {
+            "questionId": 2,
+            "question": "Who is second question",
+          	"opt": ["test1","test2","test3"],
+          	"svarInd": 1
+        }
+    ]
+}
