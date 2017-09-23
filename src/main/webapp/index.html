@@ -4,42 +4,88 @@
         <title>rest-template</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
         <script src="jquery-3.2.1.min.js"></script>
-        <script language="javascript">
-            $(document).ready(function() {
-                $(document).ready(function () {
-                    jso
-                    $("#create").click(function () {
-                        $.ajax({
-                            url: 'rest/questions',
-                            type: 'POST',
-                            data: JSON.stringify({
-                                questionId: $("#questionId").val(),
-                                question: $("#questionName").val(),
-                                sec: $("#questionSec").val(),
-                                url: $("#questionURL").val()
-                            }),
-                            contentType: 'application/json; charset=utf-8',
-                            dataType: 'json',
-                            success: function (result) {
-                            }
-                        });
-                    });
+        <script src="http://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="script.js" defer></script>
 
-                    $.get("rest/thepath", function (data) {
-                        $("#myid").html(data);
-                    });
-                });
-            });
-        </script>
     </head>
 
     <body>
-        <input id="questionId" type="text" value="questionId">
-        <input id="questionName" type="text" value="questionName">
-        <input id="questionSec" type="text" value="questionSec">
-        <input id="questionURL" type="text" value="questionURL">
+        <h1>Quizzes</h1>
+        <table id="myTable" class="display compact">
+            <thead>
+                <tr>
+                    <th>Quiz id</th>
+                    <th>Quiz name</th>
+                </tr>
+            </thead>
+        </table>
 
+        <div class="quizModal">
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Make your own quiz!</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Make your own quiz!</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="quizId">Quiz id</label>
+                                    <input type ="text" class="form-control" id="quizId" type="text" placeholder="Id">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quizName">Quiz name</label>
+                                    <input type ="text" class="form-control"  id="quizName" type="text" placeholder="Name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="questionStart">Start time</label>
+                                    <input class="form-control" type="datetime-local" id="questionStart" placeholder="Start time">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="questionId">Question id</label>
+                                    <input type ="text" class="form-control"  id="questionId" placeholder="id">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="question">Question</label>
+                                    <input type ="text" class="form-control"  id="question" placeholder="question">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sec">Duration</label>
+                                    <input type ="text" class="form-control"  id="sec" placeholder="seconds">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="riktigSvar">Correct answer</label>
+                                    <input type ="text" class="form-control"  id="riktigSvar" placeholder="Option number">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type ="button" id="createQuiz" class="btn btn-default" data-dismiss="modal">Create quiz</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     </body>
 </html>
 
