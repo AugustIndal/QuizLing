@@ -3,10 +3,6 @@
  */
 $(document).ready(function() {
 
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    })
-
     setInterval(function () {
             $('#myTable').DataTable().ajax.reload();
         },
