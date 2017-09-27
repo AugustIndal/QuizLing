@@ -122,6 +122,41 @@ $(document).ready(function() {
             });
         });
 
+        $('#showScore').click(function () {
+
+            $('#scoreModal').modal('show');
+
+            $.ajax({
+                url: "rest/quiz/" + qid,
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    var score = data.players;
+                    console.log(score);
+                    for (var i = 0; i < score.length; i++) {
+                        if (score[i].nickname != null) {
+                            console.log(score[i].nickname);
+                            // Find a <table> element with id="myTable":
+                            var table = document.getElementById("scoreTable");
+
+                            // Create an empty <tr> element and add it to the 1st position of the table:
+                            var row = table.insertRow(0);
+
+                            // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                            var cell1 = row.insertCell(0);
+                            var cell2 = row.insertCell(1);
+
+                            // Add some text to the new cells:
+                            cell1.innerHTML = score[i].nickname;
+                            cell2.innerHTML = score[i].points;
+                            //("#sc"+(i)+"N").html(score[i].nickname);
+                            //$("#sc"+(i)).html(score[i].points);
+                        }
+                    }
+                }
+            });
+        });
+
     });
 
 });

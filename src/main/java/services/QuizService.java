@@ -42,9 +42,9 @@ public class QuizService {
     @PUT
     @Path("/{qid}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void updateQuiz(@PathParam("qid") int qid){
+    public void updateQuiz(@PathParam("qid") int qid , Quiz quiz){
         if(quizzes.get(qid) != null){
-            quizzes.put(qid,quizzes.get(qid));
+            quizzes.put(qid,quiz);
         }else{
             throw new NotFoundException("NOT FOUND");
         }

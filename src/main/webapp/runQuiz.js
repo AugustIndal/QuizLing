@@ -27,7 +27,7 @@ $(document).ready(function() {
         }
     }
     qid = getUrlParameter("qid");
-
+    nickname = getUrlParameter("nick");
     $.ajax({
         url: "rest/quiz/"+qid,
         type: "get",
@@ -41,6 +41,7 @@ $(document).ready(function() {
             qStart = Number(quiz.start);
             $("#quizNameH").text(qName);
 
+            console.log(qPlayers);
             var started = false;
             setInterval(function () {
                 timeLeft = timeleft(qStart);
@@ -52,16 +53,6 @@ $(document).ready(function() {
                     $("#timeLeftText").text("Quiz started");
                     startQuiz(questions);
                     started = true;
-                    console.log(quiz.qid);
-                    quiz.players.push(
-                        {nickname:nickname, points:points}
-                    );
-                    console.log("Putting");
-                    $.ajax({
-                        url: 'rest/quiz/'+quiz.qid,
-                        type: 'PUT',
-                        data: quiz
-                    });
                     //Countdown
                 }else if(qStart - Date.now() >= 0){
                     $("#timeLeftText").text("Quiz starts in "+timeLeft);
@@ -116,6 +107,58 @@ $(document).ready(function() {
                 i++;
                 if(i < questions.length){
                     waitQuiz(duration);
+                }
+                if(i === question.length){
+                    setTimeout(function(){
+                        quiz.players.push(
+                            {nickname:nickname, points:points}
+                        );
+
+                        $.ajax({
+                            url: 'rest/quiz/'+quiz.qid,
+                            type: 'PUT',
+                            data: JSON.stringify(quiz),
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (result) {
+                            }
+                        });
+
+                    },duration)
+                    setTimeout(function(){
+                        $('#scoreModal').modal('show');
+
+                        $.ajax({
+                            url: "rest/quiz/" + qid,
+                            type: "get",
+                            dataType: "json",
+                            success: function (data) {
+                                var score = data.players;
+                                console.log(score);
+                                for (var i = 0; i < score.length; i++) {
+                                    if (score[i].nickname != null) {
+                                        console.log(score[i].nickname);
+                                        // Find a <table> element with id="myTable":
+                                        var table = document.getElementById("scoreTable");
+
+                                        // Create an empty <tr> element and add it to the 1st position of the table:
+                                        var row = table.insertRow(0);
+
+                                        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                                        var cell1 = row.insertCell(0);
+                                        var cell2 = row.insertCell(1);
+
+                                        // Add some text to the new cells:
+                                        cell1.innerHTML = score[i].nickname;
+                                        cell2.innerHTML = score[i].points;
+                                        //("#sc"+(i)+"N").html(score[i].nickname);
+                                        //$("#sc"+(i)).html(score[i].points);
+                                    }
+                                }
+                            }
+                        });
+
+                    },duration+2000)
                 }
             },duration)
         }
