@@ -3,7 +3,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -14,12 +13,25 @@ import java.util.List;
 public class Quiz implements Serializable{
     @XmlElement(name="questions")
     private List<Question> questions;
+    @XmlElement(name="players")
+    private List<Player> players;
     @XmlElement(name="qid")
     private int qid;
     @XmlElement(name="name")
-    private String navn;
+    private String name;
+    @XmlElement(name="author")
+    private String author;
     @XmlElement(name="start")
-    private LocalDateTime start;
+    private String start;
+
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 
     public List<Question> getQuestions() {
         return questions;
@@ -32,11 +44,13 @@ public class Quiz implements Serializable{
         return qid;
     }
 
-    public String getNavn() {
-        return navn;
+    public String getName() {
+        return name;
     }
 
-    public LocalDateTime getStart() {
+    public String getAuthor(){return author;}
+
+    public String getStart() {
         return start;
     }
 
@@ -44,12 +58,16 @@ public class Quiz implements Serializable{
         this.qid = qid;
     }
 
-    public void setNavn(String navn) {
-        this.navn = navn;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(String start) {
         this.start = start;
+    }
+
+    public void setAuthor(String author){
+        this.author=author;
     }
 
 }

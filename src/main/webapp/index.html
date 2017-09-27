@@ -3,6 +3,7 @@
     <head>
         <title>Quizling</title>
         <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
         <script src="jquery-3.2.1.min.js"></script>
@@ -13,12 +14,18 @@
     </head>
 
     <body>
-        <h1>Quizzes</h1>
+    <div class="container-fluid">
+
+        <div class="page-header">
+            <h1>Quizzes</h1>
+        </div>
         <table id="myTable" class="display compact">
             <thead>
                 <tr>
                     <th>Quiz id</th>
                     <th>Quiz name</th>
+                    <th>Start time</th>
+                    <th>Starting in</th>
                 </tr>
             </thead>
         </table>
@@ -43,7 +50,13 @@
                                 <a class="active nav-link" data-toggle="tab" href="#quizTab">Quiz</a>
                             </li>
                             <li class = "nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#questionTab">Questions</a>
+                                <a class="nav-link" data-toggle="tab" href="#questionTab1">Question 1</a>
+                            </li>
+                            <li class = "nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#questionTab2">Question 2</a>
+                            </li>
+                            <li class = "nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#questionTab3">Question 3</a>
                             </li>
                         </ul>
 
@@ -53,8 +66,8 @@
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-group">
-                                            <label for="quizId">Quiz id</label>
-                                            <input type ="text" class="form-control" id="quizId" type="text" placeholder="Id">
+                                            <label for="quizAuthor">Quiz author</label>
+                                            <input type ="text" class="form-control" id="quizAuthor" type="text" placeholder="Id">
                                         </div>
 
                                         <div class="form-group">
@@ -71,43 +84,134 @@
                             </div>
 
 
-                            <div id="questionTab" class="tab-pane">
+                            <div id="questionTab1" class="tab-pane">
                                 <div class="modal-body">
                                     <form>
-                                        <h2>Question 1</h2>
+                                        <h3>Question 1</h3>
+
                                         <div class="form-group">
-                                            <label for="questionId">Question id</label>
-                                            <input type ="text" class="form-control"  id="questionId" placeholder="id">
+                                            <label for="question1">Question</label>
+                                            <input type ="text" class="form-control"  id="question1" placeholder="question">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="question">Question</label>
-                                            <input type ="text" class="form-control"  id="question" placeholder="question">
+                                            <label for="url1">Picture url</label>
+                                            <input type ="text" class="form-control"  id="url1" placeholder="Url">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="sec">Duration</label>
-                                            <input type ="text" class="form-control"  id="sec" placeholder="seconds">
+                                            <label for="sec1">Duration</label>
+                                            <input type ="text" class="form-control"  id="sec1" placeholder="seconds">
+                                        </div>
+                                        <h4>Answers</h4>
+                                        <div class="form-group">
+                                            <input type ="text" class="form-control"  id="answer11" placeholder="Answer 1">
                                         </div>
                                         <div class="form-group">
-                                            <label for="answer1">Answer 1</label>
-                                            <input type ="text" class="form-control"  id="answer1" placeholder="Answer 1">
+                                            <input type ="text" class="form-control"  id="answer21" placeholder="Answer 2">
                                         </div>
                                         <div class="form-group">
-                                            <label for="answer2">Answer 2</label>
-                                            <input type ="text" class="form-control"  id="answer2" placeholder="Answer 2">
+                                            <input type ="text" class="form-control"  id="answer31" placeholder="Answer 3">
                                         </div>
                                         <div class="form-group">
-                                            <label for="answer3">Answer 3</label>
-                                            <input type ="text" class="form-control"  id="answer3" placeholder="Answer 3">
+                                            <input type ="text" class="form-control"  id="answer41" placeholder="Answer 4">
                                         </div>
                                         <div class="form-group">
-                                            <label for="answer4">Answer 4</label>
-                                            <input type ="text" class="form-control"  id="answer4" placeholder="Answer 4">
+                                            <label for="correct1">Correct Answer</label>
+                                            <select class="form-control" id="correct1">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div id="questionTab2" class="tab-pane">
+                                <div class="modal-body">
+                                    <form>
+                                        <h3>Question 2</h3>
+                                        <div class="form-group">
+                                            <label for="question1">Question</label>
+                                            <input type ="text" class="form-control"  id="question2" placeholder="question">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="url2">Picture url</label>
+                                            <input type ="text" class="form-control"  id="url2" placeholder="Url">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="sec1">Duration</label>
+                                            <input type ="text" class="form-control"  id="sec2" placeholder="seconds">
+                                        </div>
+                                        <h4>Answers</h4>
+                                        <div class="form-group">
+                                            <input type ="text" class="form-control"  id="answer12" placeholder="Answer 1">
                                         </div>
                                         <div class="form-group">
-                                            <label for="correctAns">Correct answer</label>
-                                            <input type ="text" class="form-control"  id="correctAns" placeholder="Answer nr">
+                                            <input type ="text" class="form-control"  id="answer22" placeholder="Answer 2">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type ="text" class="form-control"  id="answer32" placeholder="Answer 3">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type ="text" class="form-control"  id="answer42" placeholder="Answer 4">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="correct2">Correct Answer</label>
+                                            <select class="form-control" id="correct2">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div id="questionTab3" class="tab-pane">
+                                <div class="modal-body">
+                                    <form>
+                                        <h3>Question 3</h3>
+                                        <div class="form-group">
+                                            <label for="question1">Question</label>
+                                            <input type ="text" class="form-control"  id="question3" placeholder="question">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="url3">Picture url</label>
+                                            <input type ="text" class="form-control"  id="url3" placeholder="Url">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="sec1">Duration</label>
+                                            <input type ="text" class="form-control"  id="sec3" placeholder="seconds">
+                                        </div>
+                                        <h4>Answers</h4>
+                                        <div class="form-group">
+                                            <input type ="text" class="form-control"  id="answer13" placeholder="Answer 1">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type ="text" class="form-control"  id="answer23" placeholder="Answer 2">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type ="text" class="form-control"  id="answer33" placeholder="Answer 3">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type ="text" class="form-control"  id="answer43" placeholder="Answer 4">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="correct1">Correct Answer</label>
+                                            <select class="form-control" id="correct3">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
                                         </div>
                                     </form>
                                 </div>
@@ -124,8 +228,33 @@
             </div>
         </div>
 
+        <!-- Click quiz Modal -->
+        <div id="clickModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="quizTitle"></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="nickInput">Nickname:</label>
+                        <br>
+                        <input type ="text"  id="nickInput">
+                    </div>
+                    <div class="modal-footer">
+                        <button type ="button" id="startQuiz" class="btn btn-primary ">Join quiz</button>
+                        <button type ="button" id="deleteQuiz" class="btn btn-danger ">Delete quiz</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    </div>
     </body>
 </html>
 

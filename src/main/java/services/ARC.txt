@@ -15,3 +15,48 @@
         }
     ]
 }
+/**
+ * Calculates the remaining time in seconds, minutes, hours and days.
+ * From the current date and time to the given date.
+ * @param {Date} endDate - The date to calculate the time to.
+ * @return {{total: number, days: number, hours: number, minutes: number, seconds: number}}
+ */
+Countdown.remainingTime = function(endDate) {
+    // Calculate remaining time.
+    const millisLeft = endDate - Date.now();
+    var seconds = 0,
+        minutes = 0,
+        hours   = 0,
+        days    = 0;
+
+    if (millisLeft > 0) {
+        seconds = Math.floor((millisLeft / MILLISECONDS_PER_SECOND) % 60);
+        minutes = Math.floor((millisLeft / MILLISECONDS_PER_SECOND / SECONDS_PER_MINUTE) % 60);
+        hours   = Math.floor((millisLeft / (MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR)) % 24);
+        days    = Math.floor(millisLeft / (MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY));
+    }
+
+    // Return remaining time.
+    return {
+        "total": millisLeft,
+        "days": days,
+        "hours": hours,
+        "minutes": minutes,
+        "seconds": seconds
+    }
+};
+
+/**
+ * Update the remaining time of the jQuery elements.
+ * @param {Date} endDate - The date to count down to.
+ */
+Countdown.prototype.updateCountdown = function(endDate) {
+    // Get remaining time
+    const time = Countdown.remainingTime(endDate);
+
+    // Update HTML elements with remaining time.
+    this.days.val(time.days);
+    this.hours.val(time.hours);
+    this.minutes.val(time.minutes);
+    this.seconds.val(time.seconds);
+};

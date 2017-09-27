@@ -21,7 +21,7 @@ public class Question implements Serializable {
     @XmlElement(name="opt")
     private List<String> opt = new ArrayList<>();
 
-    @XmlElement(name="svarInd")
+    @XmlElement(name="ansInd")
     int index;
 
     @XmlElement(name="question")
@@ -68,5 +68,12 @@ public class Question implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void setAnsInd(int i){
+        this.index = i;
+    }
+    public int getAnsInd(int i){
+        return index;
     }
 }

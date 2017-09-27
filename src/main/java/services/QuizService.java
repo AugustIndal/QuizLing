@@ -13,11 +13,12 @@ import java.util.Map;
 @Path("/quiz/")
 public class QuizService {
     private static Map<Integer, Quiz> quizzes = new HashMap<>();
+    private static int quizID = 0;
 
     @GET
-    @Path("/{id}")
+    @Path("/{qid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Quiz getQuiz(@PathParam("id") int qid) {
+    public Quiz getQuiz(@PathParam("qid") int qid) {
         return quizzes.get(qid);
     }
 
@@ -29,17 +30,21 @@ public class QuizService {
         return list;
     }
 
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void createQuiz(Quiz quiz) {
+        quizID++;
+        quiz.setQid(quizID );
         quizzes.put(quiz.getQid(), quiz);
     }
 
     @PUT
+    @Path("/{qid}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void updateKunde(Quiz quiz){
-        if(quizzes.get(quiz.getQid()) != null){
-            quizzes.put(quiz.getQid(),quiz);
+    public void updateQuiz(@PathParam("qid") int qid){
+        if(quizzes.get(qid) != null){
+            quizzes.put(qid,quizzes.get(qid));
         }else{
             throw new NotFoundException("NOT FOUND");
         }
