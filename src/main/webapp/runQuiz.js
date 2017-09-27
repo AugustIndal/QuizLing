@@ -41,7 +41,6 @@ $(document).ready(function() {
             qStart = Number(quiz.start);
             $("#quizNameH").text(qName);
 
-            console.log(qPlayers);
             var started = false;
             setInterval(function () {
                 timeLeft = timeleft(qStart);
@@ -76,8 +75,14 @@ $(document).ready(function() {
             setTimeout(function(){
                 question = questions[i].question;
                 ansInd = questions[i].ansInd;
+                var durationS = questions[i].sec;
                 duration = questions[i].sec * 1000;
                 url = questions[i].url;
+                setInterval(function(){
+                    if(durationS > 0){
+                        $("#timeLeftText").text("Timeleft: "+durationS--+"s");
+                    }
+                },1000);
 
                 $("#questionHead").html("<strong>"+question+"</strong>");
                 $("#qImage").src = url;
@@ -124,8 +129,9 @@ $(document).ready(function() {
                             }
                         });
 
-                    },duration)
+                    },duration);
                     setTimeout(function(){
+
                         $('#scoreModal').modal('show');
 
                         $.ajax({
@@ -142,7 +148,7 @@ $(document).ready(function() {
                                         var table = document.getElementById("scoreTable");
 
                                         // Create an empty <tr> element and add it to the 1st position of the table:
-                                        var row = table.insertRow(0);
+                                        var row = table.insertRow(1);
 
                                         // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
                                         var cell1 = row.insertCell(0);
